@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Travel Details</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">Travel Database</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="travelReport.html">Travel Report</a></li>
+        <li><a href="travelTips.html">Travel Tips</a></li>
+      </ul>
+    </nav>
+    <h2>Travel Details</h2>
+  </header>
+
+  <main>
+    <section id="destinationDetail">
+
+    </section>
+
+    <script>
+      let destinations = [
+        {id: "1", name: "Paris", duration: "7 days", highlights: "Eiffel Tower, Louvre Museum", details: "A wonderful trip to the romantic city of Paris."},
+        {id: "2", name: "Tokyo", duration: "4 days", highlights: "Tokyo Tower, Meiji Shrine", details: "A wonderful trip to the city of Tokyo."},
+        {id: "3", name: "Rome", duration: "6 days", highlights: "Colosseum, Vatican City", details: "A wonderful trip to the city of Rome."},
+        {id: "4", name: "New York City", duration: "3 days", highlights: "Statue of Liberty, Central Park", details: "A wonderful trip to the city of New York."},
+        {id: "5", name: "Cape Town", duration: "5 days", highlights: "Table Mountain, Robben Island", details: "A wonderful trip to the city of Cape Town."},
+        {id: "6", name: "Sydney", duration: "7 days", highlights: "Sydney Opera House, Bondi Beach", details: "A wonderful trip to the city of Sydney."}
+      ]
+
+      function getParameterById(id) {
+        let url = new URL(window.location.href)
+
+        return url.searchParams.get(id)
+      }
+
+      let destinationId = getParameterById('id')
+
+      let destination;
+      for (let i = 0; i < destinations.length; i++) {
+        if (destinations[i].id === destinationId) {
+          destination = destinations[i]
+        }
+      }
+
+      let destinationDetailElement = document.getElementById('destinationDetail');
+      if (destination) {
+        destinationDetailElement.innerHTML = `
+                   <h2>${destination.name}</h2>
+                    <p><strong>Duration: </strong>${destination.duration}</p>
+                    <p><strong>Highlights: </strong>${destination.highlights}</p>
+                 <p><strong>Details: </strong>${destination.details}</p>
+               `
+      } else {
+        destinationDetailElement.innerHTML = 'destination not Found.'
+      }
+    </script>
+  </main>
+</body>
+
+</html>
